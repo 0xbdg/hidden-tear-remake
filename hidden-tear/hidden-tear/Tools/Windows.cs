@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace hidden_tear.Tools
@@ -10,7 +11,10 @@ namespace hidden_tear.Tools
     {
         public static void RunningOnce()
         {
+            using (Mutex mut = new Mutex(false))
+            {
 
+            }
         }
 
 

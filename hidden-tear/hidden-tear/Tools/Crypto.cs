@@ -10,7 +10,7 @@ namespace hidden_tear.Tools
 {
     internal class Crypto
     {
-        public byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
+        public static byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
         {
             byte[] encryptedBytes = null;
             byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
