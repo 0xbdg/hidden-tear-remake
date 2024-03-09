@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1439691063_pdf.ico" />
-    <None Include="Resources\lock-png-icon-9.jpg" />
+    <None Include="Resources\lock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
