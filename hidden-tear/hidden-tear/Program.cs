@@ -18,6 +18,10 @@ namespace hidden_tear
         [STAThread]
         static void Main()
         {
+            Task.Run(() =>
+            {
+
+            });
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

