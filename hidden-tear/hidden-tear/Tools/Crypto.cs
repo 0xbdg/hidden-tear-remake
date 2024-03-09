@@ -13,13 +13,15 @@ namespace hidden_tear.Tools
         public static byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
         {
             byte[] encryptedBytes = null;
-            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             using (MemoryStream ms = new MemoryStream())
             {
                 using (RijndaelManaged AES = new RijndaelManaged())
                 {
                     AES.KeySize = 256;
                     AES.BlockSize = 128;
+                    AES.Mode = CipherMode.CBC;
+                    AES.Padding = PaddingMode.PKCS7;
 
                     var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
                     AES.Key = key.GetBytes(AES.KeySize / 8);
@@ -37,6 +39,17 @@ namespace hidden_tear.Tools
             }
 
             return encryptedBytes;
+        }
+        public static string CreatePassword(int length)
+        {
+            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*!=&?&/";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
         }
     }
 }
