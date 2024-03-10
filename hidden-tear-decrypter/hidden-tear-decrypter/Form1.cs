@@ -39,13 +39,13 @@ namespace hidden_tear_decrypter
             InitializeComponent();
         }
 
-        public byte[] AES_Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
+        public byte[] AES_Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes, string saltByte)
         {
             byte[] decryptedBytes = null;
 
             // Set your salt here, change it to meet your flavor:
             // The salt bytes must be at least 8 bytes.
-            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+            byte[] saltBytes = Encoding.ASCII.GetBytes(saltByte);
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -75,14 +75,14 @@ namespace hidden_tear_decrypter
             return decryptedBytes;
         }
 
-        public void DecryptFile(string file,string password)
+        public void DecryptFile(string file,string password,string salt)
         {
 
             byte[] bytesToBeDecrypted = File.ReadAllBytes(file);
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
 
-            byte[] bytesDecrypted = AES_Decrypt(bytesToBeDecrypted, passwordBytes);
+            byte[] bytesDecrypted = AES_Decrypt(bytesToBeDecrypted, passwordBytes,salt);
 
             File.WriteAllBytes(file, bytesDecrypted);
             string extension = System.IO.Path.GetExtension(file);
@@ -94,6 +94,7 @@ namespace hidden_tear_decrypter
         public async void DecryptDirectory(string location)
         {
             string password = textBox1.Text;
+            string salt = textBox2.Text;
 
             string[] files = Directory.GetFiles(location);
             string[] childDirectories = Directory.GetDirectories(location);
@@ -102,7 +103,7 @@ namespace hidden_tear_decrypter
                 string extension = Path.GetExtension(files[i]);
                 if (extension == ".locked")
                 {
-                    DecryptFile(files[i], password);
+                    DecryptFile(files[i], password,salt);
                 }
             }
             for (int i = 0; i < childDirectories.Length; i++)
