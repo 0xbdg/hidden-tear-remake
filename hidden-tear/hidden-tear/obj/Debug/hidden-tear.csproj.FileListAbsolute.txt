@@ -27,6 +27,6 @@ C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden
 C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden-tear\bin\Debug\System.Text.Json.xml
 C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden-tear\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden-tear\bin\Debug\System.ValueTuple.xml
-C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden-tear\obj\Debug\hidden-tear.csproj.Fody.CopyLocal.cache
 C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden-tear\obj\Debug\hidden-t.DBB0C6B9.Up2Date
+C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden-tear\obj\Debug\hidden-tear.csproj.Fody.CopyLocal.cache
 C:\Users\endministratir\source\repos\0xbdg\hidden-tear-remake\hidden-tear\hidden-tear\obj\Debug\hidden-tear.csproj.Fody.RuntimeCopyLocal.cache
