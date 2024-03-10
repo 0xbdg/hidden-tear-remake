@@ -10,10 +10,10 @@ namespace hidden_tear.Tools
 {
     internal class Crypto
     {
-        public static byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
+        public static byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes, string saltByte)
         {
             byte[] encryptedBytes = null;
-            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            byte[] saltBytes = Encoding.ASCII.GetBytes(saltByte);
             using (MemoryStream ms = new MemoryStream())
             {
                 using (RijndaelManaged AES = new RijndaelManaged())
@@ -40,7 +40,7 @@ namespace hidden_tear.Tools
 
             return encryptedBytes;
         }
-        public static string CreatePassword(int length)
+        public static string CreatePasswordAndSalt(int length)
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*!=&?&/";
             StringBuilder res = new StringBuilder();

