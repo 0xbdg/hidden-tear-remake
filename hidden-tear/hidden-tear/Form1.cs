@@ -31,7 +31,7 @@ namespace hidden_tear
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            dt = new DateTime(Config.year,Config.month,Config.day);
+            dt = new DateTime(Config.year,Config.month,Config.day).AddDays(3);
             TimeSpan remaining = dt - DateTime.Now;
 
             if (remaining.TotalSeconds <= 0)

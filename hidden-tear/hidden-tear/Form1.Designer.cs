@@ -183,7 +183,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::hidden_tear.Properties.Resources._lock;
+            this.pictureBox1.BackgroundImage = global::hidden_tear.Properties.Resources.locked;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(408, 89);
             this.pictureBox1.Name = "pictureBox1";

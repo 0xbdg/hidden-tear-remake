@@ -12,14 +12,18 @@ namespace hidden_tear.Tools
 {
     internal class Windows
     {
-        public static void RunningOnce()
+        public static bool OneInstance()
         {
-            using (Mutex mut = new Mutex(false))
+            bool mutx = true;
+            using (Mutex mut = new Mutex(true, Config.mutex, out mutx))
             {
-
+                if (mutx)
+                {
+                    return true;
+                }
             }
+            return false;
         }
-
 
         public static void Registry(string path, string var, string val)
         {
