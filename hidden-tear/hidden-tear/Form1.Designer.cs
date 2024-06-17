@@ -156,12 +156,13 @@
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.Black;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.richTextBox1.Font = new System.Drawing.Font("Franklin Gothic Medium", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.ForeColor = System.Drawing.Color.Lime;
-            this.richTextBox1.Location = new System.Drawing.Point(18, 283);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 295);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(936, 312);
+            this.richTextBox1.Size = new System.Drawing.Size(955, 312);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "Ransom Note";
             // 
